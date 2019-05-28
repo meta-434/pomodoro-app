@@ -1,7 +1,9 @@
 import firebase from "firebase";
 
+const API_KEY = process.env.GOOGLE_API_KEY;
+
 const firebaseConfig = {
-  apiKey: "AIzaSyDN1_bBTp-HsRdb8mNEX-ivP7XuoB8XNGc",
+  apiKey: API_KEY,
   authDomain: "restaurant-searcher-ab59d.firebaseapp.com",
   databaseURL: "https://restaurant-searcher-ab59d.firebaseio.com",
   projectId: "restaurant-searcher-ab59d",
