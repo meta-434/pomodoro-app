@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Timer from "react-compound-timer";
 
-class Timer extends Component {
+class Time extends Component {
   constructor(props) {
     super(props);
 
@@ -25,3 +25,5 @@ class Timer extends Component {
     );
   }
 }
+
+export default Timer;

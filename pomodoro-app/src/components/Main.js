@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import firebase from "./firebase.js";
 
 import Button from "@material-ui/core/Button";
@@ -10,6 +9,7 @@ import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
+import Time from "./Timer.js";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -17,5 +17,7 @@ export default class App extends React.Component {
     this.state = {};
   }
 
-  render() {}
+  render() {
+    return <Time />;
+  }
 }
