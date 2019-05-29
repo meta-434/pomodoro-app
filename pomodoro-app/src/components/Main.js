@@ -1,15 +1,13 @@
 import React from "react";
+//firebase
 import firebase from "./firebase.js";
-
 //styling (material ui)
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -18,10 +16,11 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import RestoreIcon from "@material-ui/icons/Assignment";
 import AccountIcon from "@material-ui/icons/AccountBox";
 import LocationOnIcon from "@material-ui/icons/Backup";
-
 import "typeface-roboto";
 //timer
 import Time from "./Time.js";
+//react-router
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const styles = theme => ({
   root: {
@@ -57,7 +56,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       pomodoros: [],
-      text: ""
+      text: "",
+      pathMap: ["/", "/profile", "/login"]
     };
   }
 
@@ -74,6 +74,19 @@ class App extends React.Component {
       [value]: event.target.value
     });
   };
+
+  componentWillReceiveProps(newProps) {
+    const { pathname } = newProps.location;
+    const { pathMap } = this.state;
+
+    const value = pathMap.indexOf(pathname);
+
+    if (value > -1) {
+      this.setState({
+        value
+      });
+    }
+  }
 
   componentDidMount() {
     const contractRef = firebase.database().ref("text_entries");
@@ -92,6 +105,8 @@ class App extends React.Component {
   };
 
   render() {
+    const { value, pathMap } = this.state;
+
     const { classes } = this.props;
     return (
       <Grid container component="main" className={classes.root}>
@@ -135,10 +150,32 @@ class App extends React.Component {
           </Card>
 
           <Card>
-            <BottomNavigation showLabels>
-              <BottomNavigationAction label="Main" icon={<RestoreIcon />} />
-              <BottomNavigationAction label="Profile" icon={<AccountIcon />} />
-              <BottomNavigationAction label="Login" icon={<LocationOnIcon />} />
+            <BottomNavigation
+              showLabels
+              value={value}
+              onChange={this.handleChange}
+              showLabels
+              className="nav primary"
+            >
+              >
+              <BottomNavigationAction
+                label="Main"
+                icon={<RestoreIcon />}
+                component={Link}
+                to={this.pathMap[0]}
+              />
+              <BottomNavigationAction
+                label="Profile"
+                icon={<AccountIcon />}
+                component={Link}
+                to={this.pathMap[1]}
+              />
+              <BottomNavigationAction
+                label="Login"
+                icon={<LocationOnIcon />}
+                component={Link}
+                to={this.pathMap[2]}
+              />
             </BottomNavigation>
           </Card>
         </Grid>

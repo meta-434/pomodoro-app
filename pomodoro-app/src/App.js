@@ -5,7 +5,12 @@ import Main from "./components/Main.js";
 function App() {
   return (
     <div className="App">
-      <Main />
+      <Router>
+        <div className="app">
+          <Route path="/" component={Main} />
+          <Main />
+        </div>
+      </Router>
     </div>
   );
 }
