@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Timer from "react-compound-timer";
 import Button from "@material-ui/core/Button";
 import Chip from "@material-ui/core/Chip";
+import Card from "@material-ui/core/Card";
 
 class Time extends Component {
   constructor(props) {
@@ -12,10 +13,14 @@ class Time extends Component {
     };
   }
 
+  timerUp() {
+    console.log("time's up!");
+  }
+
   render() {
     return (
       <Timer
-        initialTime={1500000}
+        initialTime={1000} //set to 1500000 for 25 minutes
         direction="backward"
         startImmediately={false}
         onReset={() => console.log("onReset hook")} //use to switch to 5 minute timer (use a state or prop change?)
@@ -35,6 +40,10 @@ class Time extends Component {
           {
             time: 300000, // 5 minutes
             callback: () => console.log("5 minutes left")
+          },
+          {
+            time: 0,
+            callback: () => this.timerUp()
           }
         ]}
       >
@@ -42,7 +51,7 @@ class Time extends Component {
           <React.Fragment>
             <div>
               <Timer.Minutes /> minutes <br />
-              <Timer.Seconds /> seconds 
+              <Timer.Seconds /> seconds
             </div>
             <div>
               <Chip label={timerState} />
@@ -58,7 +67,7 @@ class Time extends Component {
                 Stop
               </Button>
               <Button variant="outlined" color="primary" onClick={reset}>
-                Reset
+                Next
               </Button>
             </div>
           </React.Fragment>
