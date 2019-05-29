@@ -42,7 +42,7 @@ class Time extends Component {
           <React.Fragment>
             <div>
               <Timer.Minutes /> minutes <br />
-              <Timer.Seconds /> seconds 
+              <Timer.Seconds /> seconds
             </div>
             <div>
               <Chip label={timerState} />
@@ -52,8 +52,8 @@ class Time extends Component {
               <Button variant="contained" color="primary" onClick={start}>
                 Start
               </Button>
-              <Button onClick={pause}> Pause </Button>
-              <Button onClick={resume}> Resume </Button>
+              {/* <Button onClick={pause}> Pause </Button>
+              <Button onClick={resume}> Resume </Button> */}
               <Button variant="contained" color="secondary" onClick={stop}>
                 Stop
               </Button>
