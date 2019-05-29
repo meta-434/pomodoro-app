@@ -2,24 +2,12 @@ import React from "react";
 //firebase
 import firebase from "./firebase.js";
 //styling (material ui)
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
+import { Button, TextField, Grid, Typography, Card } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Container from "@material-ui/core/Container";
-
 import "typeface-roboto";
 //timer
 import Time from "./Time.js";
 import Time2 from "./Time2.js";
-import Profile from "./Profile.js";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-//react-router
 
 const styles = theme => ({
   root: {
