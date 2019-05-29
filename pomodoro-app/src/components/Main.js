@@ -22,6 +22,7 @@ import LocationOnIcon from "@material-ui/icons/Backup";
 import "typeface-roboto";
 //timer
 import Time from "./Time.js";
+import Time2 from "./Time2.js";
 
 const styles = theme => ({
   root: {
@@ -107,6 +108,10 @@ class App extends React.Component {
           <Card>
             <CardContent>
               <Time />
+            </CardContent>
+            <CardContent>
+              {" "}
+              <Time2 />
             </CardContent>
           </Card>
           <Card>
