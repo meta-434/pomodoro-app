@@ -1,28 +1,24 @@
 import React from "react";
+//firebase
 import firebase from "./firebase.js";
-
 //styling (material ui)
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import RestoreIcon from "@material-ui/icons/Assignment";
-import AccountIcon from "@material-ui/icons/AccountBox";
-import LocationOnIcon from "@material-ui/icons/Backup";
 
 import "typeface-roboto";
 //timer
 import Time from "./Time.js";
 import Time2 from "./Time2.js";
+import Profile from "./Profile.js";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+//react-router
 
 const styles = theme => ({
   root: {
@@ -48,12 +44,18 @@ const styles = theme => ({
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1)
   },
+  button: {
+    margin: theme.spacing(1)
+  },
+  input: {
+    display: "none"
+  },
   submit: {
     margin: theme.spacing(3, 0, 2)
   }
 });
 
-class App extends React.Component {
+class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -140,14 +142,6 @@ class App extends React.Component {
               Submit
             </Button>
           </Card>
-
-          <Card>
-            <BottomNavigation showLabels>
-              <BottomNavigationAction label="Main" icon={<RestoreIcon />} />
-              <BottomNavigationAction label="Profile" icon={<AccountIcon />} />
-              <BottomNavigationAction label="Login" icon={<LocationOnIcon />} />
-            </BottomNavigation>
-          </Card>
         </Grid>
         <Grid item xs={12} sm={4} md={5} elevation={6}>
           {Object.keys(this.state.pomodoros).map(key => {
@@ -165,4 +159,4 @@ class App extends React.Component {
   }
 }
 
-export default withStyles(styles)(App);
+export default withStyles(styles)(Main);
