@@ -94,14 +94,16 @@ class App extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <Grid container component="main" className={classes.root}>
+      <Grid container component="main" className={classes.root} spacing={3}>
         <CssBaseline />
 
-        <Grid item xs={false} sm={4} md={7} component={Paper}>
-          <Typography variant="h2">Pomodoro Tracker</Typography>
-          <Typography variant="subtitle1" gutterBottom>
-            25 on, 5 off
-          </Typography>
+        <Grid item xs={false} sm={8} md={7} component={Paper}>
+          <Card>
+            <Typography variant="h2">Pomodoro Tracker</Typography>
+            <Typography variant="subtitle1" gutterBottom>
+              25 on, 5 off
+            </Typography>
+          </Card>
           <Card>
             <CardContent>
               <Time />
@@ -142,9 +144,15 @@ class App extends React.Component {
             </BottomNavigation>
           </Card>
         </Grid>
-        <Grid item xs={12} sm={8} md={5} elevation={6}>
+        <Grid item xs={12} sm={4} md={5} elevation={6}>
           {Object.keys(this.state.pomodoros).map(key => {
-            return <p>{JSON.stringify(this.state.pomodoros[key]["text"])}</p>;
+            return (
+              <Card>
+                <CardContent>
+                  {JSON.stringify(this.state.pomodoros[key]["text"])}
+                </CardContent>
+              </Card>
+            );
           })}
         </Grid>
       </Grid>
