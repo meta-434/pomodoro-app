@@ -1,5 +1,6 @@
 import React from "react";
 import firebase from "./firebase.js";
+
 //styling (material ui)
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
