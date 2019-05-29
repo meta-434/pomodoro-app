@@ -1,5 +1,4 @@
 import React from "react";
-//firebase
 import firebase from "./firebase.js";
 //styling (material ui)
 import Button from "@material-ui/core/Button";
@@ -13,21 +12,91 @@ import Container from "@material-ui/core/Container";
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import BottomNavigation from "@material-ui/core/BottomNavigation";
+import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
+import RestoreIcon from "@material-ui/icons/Assignment";
+import AccountIcon from "@material-ui/icons/AccountBox";
+import LocationOnIcon from "@material-ui/icons/Backup";
 
 import "typeface-roboto";
 //timer
 import Time from "./Time.js";
 
-export default class App extends React.Component {
+const styles = theme => ({
+  root: {
+    height: "100vh"
+  },
+  image: {
+    backgroundImage: "url(https://source.unsplash.com/random)",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    backgroundPosition: "center"
+  },
+  paper: {
+    margin: theme.spacing(8, 4),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1)
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2)
+  }
+});
+
+class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      pomodoros: [],
+      text: ""
+    };
   }
 
+  handleClick = event => {
+    const textRef = firebase.database().ref("text_entries");
+    const user = {
+      text: this.state.text
+    };
+    textRef.push(user);
+  };
+
+  handleValue = (event, value) => {
+    this.setState({
+      [value]: event.target.value
+    });
+  };
+
+  componentDidMount() {
+    const contractRef = firebase.database().ref("text_entries");
+
+    contractRef.on("value", snap => {
+      let update = snap.val() || [];
+      console.log(update);
+      this.updateSnap(update);
+    });
+  }
+
+  updateSnap = value => {
+    this.setState({
+      pomodoros: value
+    });
+  };
+
   render() {
+    const { classes } = this.props;
     return (
-      <Container maxWidth="lg">
-        <Paper>
+      <Grid container component="main" className={classes.root}>
+        <CssBaseline />
+
+        <Grid item xs={false} sm={4} md={7} component={Paper}>
           <Typography variant="h2">Pomodoro Tracker</Typography>
           <Typography variant="subtitle1" gutterBottom>
             25 on, 5 off
@@ -37,8 +106,49 @@ export default class App extends React.Component {
               <Time />
             </CardContent>
           </Card>
-        </Paper>
-      </Container>
+          <Card>
+            <TextField
+              placeholder="MultiLine with rows: 2 and rowsMax: 4"
+              multiline={true}
+              fullWidth
+              required
+              variant="outlined"
+              margin="normal"
+              rows={2}
+              rowsMax={4}
+              value={this.state.text}
+              onChange={e => this.handleValue(e, "text")}
+            />
+          </Card>
+          <Card>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={this.handleClick}
+            >
+              Submit
+            </Button>
+          </Card>
+
+          <Card>
+            <BottomNavigation showLabels>
+              <BottomNavigationAction label="Main" icon={<RestoreIcon />} />
+              <BottomNavigationAction label="Profile" icon={<AccountIcon />} />
+              <BottomNavigationAction label="Login" icon={<LocationOnIcon />} />
+            </BottomNavigation>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={8} md={5} elevation={6}>
+          {Object.keys(this.state.pomodoros).map(key => {
+            return <p>{JSON.stringify(this.state.pomodoros[key]["text"])}</p>;
+          })}
+        </Grid>
+      </Grid>
     );
   }
 }
+
+export default withStyles(styles)(App);
