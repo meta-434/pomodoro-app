@@ -9,8 +9,24 @@ class Time extends Component {
     super(props);
 
     this.state = {
+      timerVal: 10000,
       data: null
     };
+  }
+  //this is not correctly triggering the timer to update it's start value.
+  //re-render is happening, however. 
+  resetHandler() {
+    if (this.state.timerVal === 10000) {
+      this.setState({ timerVal: 30000 }); //should be 300000
+    } else if (this.state.timerVal === 30000) {
+      this.setState({ timerVal: 10000 }); //should be 1500000
+    }
+    console.log(" timerVal ", this.state.timerVal);
+  }
+
+  timeUp() {
+    console.log("time's up");
+    
   }
 
   timerUp() {
@@ -18,12 +34,13 @@ class Time extends Component {
   }
 
   render() {
+    console.log("re-render");
     return (
       <Timer
-        initialTime={1000} //set to 1500000 for 25 minutes
+        initialTime={this.state.timerVal} //normally 1500000
         direction="backward"
         startImmediately={false}
-        onReset={() => console.log("onReset hook")} //use to switch to 5 minute timer (use a state or prop change?)
+        onReset={()=>this.resetHandler()} //use to switch to 5 minute timer (use a state or prop change?)
         checkpoints={[
           {
             time: 1200000, //20 minutes
@@ -42,12 +59,12 @@ class Time extends Component {
             callback: () => console.log("5 minutes left")
           },
           {
-            time: 0,
-            callback: () => this.timerUp()
+            time: 0, // 5 minutes
+            callback: () => this.timeUp()
           }
         ]}
       >
-        {({ start, resume, pause, stop, reset, timerState }) => (
+        {({ start, stop, reset, timerState}) => (
           <React.Fragment>
             <div>
               <Timer.Minutes /> minutes <br />
@@ -61,8 +78,6 @@ class Time extends Component {
               <Button variant="contained" color="primary" onClick={start}>
                 Start
               </Button>
-              <Button onClick={pause}> Pause </Button>
-              <Button onClick={resume}> Resume </Button>
               <Button variant="contained" color="secondary" onClick={stop}>
                 Stop
               </Button>
