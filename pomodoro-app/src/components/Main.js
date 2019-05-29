@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import Container from "@material-ui/core/Container";
 
 import "typeface-roboto";
 //timer
@@ -22,28 +23,14 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const styles = theme => ({
   root: {
-    height: "100vh"
-  },
-  image: {
-    backgroundImage: "url(https://source.unsplash.com/random)",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    backgroundPosition: "center"
+    flexGrow: 1
   },
   paper: {
-    margin: theme.spacing(8, 4),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary
   },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
-  },
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1)
-  },
+
   button: {
     margin: theme.spacing(1)
   },
@@ -97,64 +84,48 @@ class Main extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <Grid container component="main" className={classes.root} spacing={3}>
-        <CssBaseline />
+      <div className={classes.root}>
+        <Card>
+          <Typography variant="h2">Pomodoro Tracker</Typography>
+          <Typography variant="subtitle1" gutterBottom>
+            25 on, 5 off
+          </Typography>
+        </Card>
 
-        <Grid item xs={false} sm={8} md={7} component={Paper}>
-          <Card>
-            <Typography variant="h2">Pomodoro Tracker</Typography>
-            <Typography variant="subtitle1" gutterBottom>
-              25 on, 5 off
-            </Typography>
-          </Card>
-          <Card>
-            <CardContent>
-              <Time />
-            </CardContent>
-            <CardContent>
-              {" "}
-              <Time2 />
-            </CardContent>
-          </Card>
-          <Card>
-            <TextField
-              placeholder="Enter Text Here..."
-              multiline={true}
-              fullWidth
-              required
-              variant="outlined"
-              margin="normal"
-              rows={2}
-              rowsMax={4}
-              value={this.state.text}
-              onChange={e => this.handleValue(e, "text")}
-            />
-          </Card>
-          <Card>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={this.handleClick}
-            >
-              Submit
-            </Button>
-          </Card>
+        <Grid item xs={12}>
+          <Time />
         </Grid>
-        <Grid item xs={12} sm={4} md={5} elevation={6}>
-          {Object.keys(this.state.pomodoros).map(key => {
-            return (
-              <Card>
-                <CardContent>
-                  {JSON.stringify(this.state.pomodoros[key]["text"])}
-                </CardContent>
-              </Card>
-            );
-          })}
+        <Grid item xs={12}>
+          <Time2 />
         </Grid>
-      </Grid>
+
+        <Card>
+          <TextField
+            placeholder="Enter Text Here..."
+            multiline={true}
+            fullWidth
+            required
+            variant="outlined"
+            margin="normal"
+            rows={2}
+            rowsMax={4}
+            value={this.state.text}
+            onChange={e => this.handleValue(e, "text")}
+          />
+        </Card>
+        <Card>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={this.handleClick}
+          >
+            Submit
+          </Button>
+        </Card>
+      </div>
     );
   }
 }
