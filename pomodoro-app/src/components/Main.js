@@ -108,7 +108,7 @@ class App extends React.Component {
           </Card>
           <Card>
             <TextField
-              placeholder="MultiLine with rows: 2 and rowsMax: 4"
+              placeholder="Enter Text Here..."
               multiline={true}
               fullWidth
               required
