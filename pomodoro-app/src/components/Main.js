@@ -8,6 +8,7 @@ import "typeface-roboto";
 //timer
 import Time from "./Time.js";
 import Time2 from "./Time2.js";
+import axios from 'axios';
 
 const styles = theme => ({
   root: {
@@ -35,9 +36,12 @@ class Main extends React.Component {
     super(props);
     this.state = {
       pomodoros: [],
-      text: ""
+      text: "",
+      motivation : "",
     };
   }
+
+  
 
   handleClick = event => {
     const textRef = firebase.database().ref("text_entries");
@@ -54,6 +58,14 @@ class Main extends React.Component {
   };
 
   componentDidMount() {
+    axios.get('http://localhost:9000/quotes')
+      .then(res => {
+        this.setState({motivation : res.data.slip.advice}, console.log(this.state.motivation))
+      })
+
+      
+
+    console.log(this.state.motivation)
     const contractRef = firebase.database().ref("text_entries");
 
     contractRef.on("value", snap => {
@@ -80,6 +92,7 @@ class Main extends React.Component {
           <Typography variant="subtitle1" gutterBottom>
             25 on, 5 off
           </Typography>
+          <Typography>{this.state.motivation}</Typography>
         </Card>
 
         <Grid item xs={12}>
