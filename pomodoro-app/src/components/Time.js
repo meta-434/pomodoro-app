@@ -9,12 +9,12 @@ class Time extends Component {
     super(props);
 
     this.state = {
-      timerVal: 10000,
+      timerVal: 1500000,
       data: null
     };
   }
   //this is not correctly triggering the timer to update it's start value.
-  //re-render is happening, however. 
+  //re-render is happening, however.
   resetHandler() {
     if (this.state.timerVal === 10000) {
       this.setState({ timerVal: 30000 }); //should be 300000
@@ -26,7 +26,6 @@ class Time extends Component {
 
   timeUp() {
     console.log("time's up");
-    
   }
 
   timerUp() {
@@ -40,7 +39,7 @@ class Time extends Component {
         initialTime={this.state.timerVal} //normally 1500000
         direction="backward"
         startImmediately={false}
-        onReset={()=>this.resetHandler()} //use to switch to 5 minute timer (use a state or prop change?)
+        onReset={() => this.resetHandler()} //use to switch to 5 minute timer (use a state or prop change?)
         checkpoints={[
           {
             time: 1200000, //20 minutes
@@ -64,7 +63,7 @@ class Time extends Component {
           }
         ]}
       >
-        {({ start, stop, reset, timerState}) => (
+        {({ start, stop, reset, timerState }) => (
           <React.Fragment>
             <div>
               <Timer.Minutes /> minutes <br />
