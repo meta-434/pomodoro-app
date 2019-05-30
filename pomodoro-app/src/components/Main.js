@@ -55,7 +55,6 @@ class Main extends React.Component {
 
   componentDidMount() {
     const contractRef = firebaseConfig.database().ref("text_entries");
-   
 
     contractRef.on("value", snap => {
       let update = snap.val() || [];

@@ -30,6 +30,13 @@ class App extends Component {
       pomodoros: value
     });
   };
+
+  changeParentUser = value => {
+    this.setState({
+      currentUser: value
+    });
+    console.log(value);
+  };
   render() {
     const { classes } = this.props;
 
@@ -43,6 +50,7 @@ class App extends Component {
               <Main
                 {...props}
                 changeParent={this.changeParent}
+                currentUser={this.state.currentUser}
                 isAuthed={true}
               />
             )}
@@ -64,7 +72,7 @@ class App extends Component {
             render={props => (
               <Login
                 {...props}
-                pomodoros={this.state.pomodoros}
+                changeParentUser={this.changeParentUser}
                 isAuthed={true}
               />
             )}
