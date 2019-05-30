@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import Card from "@material-ui/core/Card";
-import Container from "@material-ui/core/Container";
+import { Card, Container, Typography } from "@material-ui/core";
 import firebaseApp from "./firebaseConfig";
 
 class Profile extends Component {
@@ -16,7 +15,9 @@ class Profile extends Component {
     console.log(onlyThisUser);
     if (onlyThisUser != null) {
       return (
-        <Container>
+        <Container maxWidth="md">
+        <Typography variant="h2">Pomodoro Tracker</Typography>
+        <Typography variant="h6">Completed Tasks:</Typography>
           {Object.keys(onlyThisUser).map(key => {
             return <Card>{JSON.stringify(onlyThisUser[key]["entry"])} </Card>;
           })}
