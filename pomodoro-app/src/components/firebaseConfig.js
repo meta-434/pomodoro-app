@@ -1,7 +1,7 @@
-const FIREBASE_API_KEY = process.env.API_KEY
+const FIREBASE_API_KEY = process.env.API_KEY;
 
 export default {
-  apiKey: "AIzaSyANbMPf2LUJPxfcBd2xoUwqBrxWyL4MHGU",
+  apiKey: FIREBASE_API_KEY,
   authDomain: "pomodoro-project-48cf7.firebaseapp.com",
   databaseURL: "https://pomodoro-project-48cf7.firebaseio.com",
   projectId: "pomodoro-project-48cf7",
