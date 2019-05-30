@@ -7,46 +7,9 @@ import logo from "../logo.svg";
 import "../App.css";
 import { Container, Paper, Card, Chip, Button } from "@material-ui/core";
 
-// const firebaseApp = firebase.initializeApp(firebaseConfig);
-
-// const useStyles = makeStyles({
-//   card: {
-//     minWidth: 275,
-//   },
-//   bullet: {
-//     display: 'inline-block',
-//     margin: '0 2px',
-//     transform: 'scale(0.8)',
-//   },
-//   title: {
-//     fontSize: 14,
-//   },
-//   pos: {
-//     marginBottom: 12,
-//   },
-// });
-
-// const useStyles = makeStyles({
-//   card: {
-//     minWidth: 275,
-//   },
-//   bullet: {
-//     display: 'inline-block',
-//     margin: '0 2px',
-//     transform: 'scale(0.8)',
-//   },
-//   title: {
-//     fontSize: 14,
-//   },
-//   pos: {
-//     marginBottom: 12,
-//   },
-// });
-
 class Login extends Component {
   render() {
     const { user, signOut, signInWithGoogle } = this.props;
-
     return (
       <Container maxWidth="sm">
         <Paper>
@@ -73,6 +36,14 @@ class Login extends Component {
     );
   }
 }
+
+const userIDs = firebaseApp.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log(user.uid);
+  } else {
+    console.log('no login')
+  }
+})
 
 const firebaseAppAuth = firebaseApp.auth();
 
