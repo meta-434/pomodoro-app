@@ -2,7 +2,15 @@ import React from "react";
 //firebase
 import firebaseConfig from "./firebaseConfig.js";
 //styling (material ui)
-import { Button, TextField, Grid, Typography, Card } from "@material-ui/core";
+import {
+  Button,
+  TextField,
+  Grid,
+  Typography,
+  Card,
+  Container,
+  Paper
+} from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import "typeface-roboto";
 //timer
@@ -18,7 +26,6 @@ const styles = theme => ({
     textAlign: "center",
     color: theme.palette.text.secondary
   },
-
   button: {
     margin: theme.spacing(1)
   },
@@ -27,6 +34,11 @@ const styles = theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary
   }
 });
 
@@ -57,48 +69,54 @@ class Main extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.root}>
-        <Card>
-          <Typography variant="h2">Pomodoro Tracker</Typography>
-          <Typography variant="subtitle1" gutterBottom>
-            25 on, 5 off
-          </Typography>
-        </Card>
-
-        <Grid item xs={12}>
-          <Time />
-        </Grid>
-        <Grid item xs={12}>
-          <Time2 />
-        </Grid>
-
-        <Card>
-          <TextField
-            placeholder="Enter Text Here..."
-            multiline={true}
-            fullWidth
-            required
-            variant="outlined"
-            margin="normal"
-            rows={2}
-            rowsMax={4}
-            value={this.state.text}
-            onChange={e => this.handleValue(e, "text")}
-          />
-        </Card>
-        <Card>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={this.handleClick}
-          >
-            Submit
-          </Button>
-        </Card>
-      </div>
+      <Container maxWidth="md">
+        <div className={classes.root}>
+          <Card>
+            <Typography variant="h2">Pomodoro Tracker</Typography>
+            <Typography variant="subtitle1" gutterBottom>
+              25 on, 5 off
+            </Typography>
+          </Card>
+          <Grid container spacing={12}>
+            <Grid item xs={6}>
+              <p>{"\n"}</p>
+              <Paper>
+                <Time />
+              </Paper>
+            </Grid>
+            <Grid item xs={6}>
+            <p>{"\n"}</p>
+              <Paper>
+                <Time2 />
+              </Paper>
+            </Grid>
+          </Grid>
+          <Card>
+            <TextField
+              placeholder="Enter Text Here..."
+              multiline={true}
+              fullWidth
+              required
+              variant="outlined"
+              margin="normal"
+              rows={2}
+              rowsMax={4}
+              value={this.state.text}
+              onChange={e => this.handleValue(e, "text")}
+            />
+         
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={this.handleClick}
+            >
+              Submit
+            </Button>
+          </Card>
+        </div>
+      </Container>
     );
   }
 }

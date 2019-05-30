@@ -105,8 +105,8 @@ class App extends Component {
           />
           {/*add <Route path="/login" component={Login} /> once Login.js is complete and imported. */}
           <Button
-            variant="contained"
-            color="secondary"
+            variant="outlined"
+            color="primary"
             className={classes.button}
           >
             {" "}
@@ -114,8 +114,8 @@ class App extends Component {
             <RestoreIcon className={classes.rightIcon} />
           </Button>
           <Button
-            variant="contained"
-            color="secondary"
+            variant="outlined"
+            color="primary"
             className={classes.button}
           >
             {" "}
@@ -123,8 +123,8 @@ class App extends Component {
             <AccountIcon className={classes.rightIcon} />
           </Button>
           <Button
-            variant="contained"
-            color="secondary"
+            variant="outlined"
+            color="primary"
             className={classes.button}
           >
             {" "}

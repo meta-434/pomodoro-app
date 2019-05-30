@@ -3,9 +3,7 @@ import withFirebaseAuth from "react-with-firebase-auth";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import firebaseApp from "./firebaseConfig";
-import logo from "../logo.svg";
-import "../App.css";
-import { Container, Paper, Card, Chip, Button } from "@material-ui/core";
+import { Container, Paper, Card, Chip, Button, Typography } from "@material-ui/core";
 
 class Login extends Component {
   constructor(props) {
@@ -14,30 +12,13 @@ class Login extends Component {
       currentUser: ""
     };
   }
-  componentDidMount() {
-    // firebaseApp.auth().onAuthStateChanged(user => {
-    //   if (user) {
-    //     this.setState(
-    //       {
-    //         currentUser: user.uid
-    //       },
-    //       () => this.props.changeParentUser(this.state.currentUser)
-    //     );
-    //   } else {
-    //     this.setState(
-    //       {
-    //         currentUser: "no_login"
-    //       },
-    //       () =>  this.props.changeParentUser(this.state.currentUser)
-    //     );
-    //   }
-    // });
-  }
-
+ 
   render() {
     const { user, signOut, signInWithGoogle } = this.props;
     return (
       <Container maxWidth="sm">
+      <Typography variant="h2">Pomodoro Tracker</Typography>
+        <Typography variant="h6">Login:</Typography>
         <Paper>
           <p>{"\n"}</p>
           <Card>
