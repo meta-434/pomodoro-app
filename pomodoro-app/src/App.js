@@ -18,13 +18,45 @@ const styles = theme => ({
 });
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pomodoros: []
+    };
+  }
+  changeParent = value => {
+    this.setState({
+      pomodoros: value
+    });
+  };
   render() {
     const { classes } = this.props;
+
     return (
       <div className="App">
         <Router>
-          <Route exact={true} path="/" component={Main} />
-          <Route exact={true} path="/profile" component={Profile} />
+          <Route
+            exact={true}
+            path="/"
+            render={props => (
+              <Main
+                {...props}
+                changeParent={this.changeParent}
+                isAuthed={true}
+              />
+            )}
+          />
+          <Route
+            exact={true}
+            path="/profile"
+            render={props => (
+              <Profile
+                {...props}
+                pomodoros={this.state.pomodoros}
+                isAuthed={true}
+              />
+            )}
+          />
           {/*add <Route path="/login" component={Login} /> once Login.js is complete and imported. */}
           <Button
             variant="contained"

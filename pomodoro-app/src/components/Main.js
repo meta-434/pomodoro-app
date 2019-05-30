@@ -60,6 +60,8 @@ class Main extends React.Component {
       let update = snap.val() || [];
       console.log(update);
       this.updateSnap(update);
+      console.log("trying!");
+      this.props.changeParent(update);
     });
   }
 
