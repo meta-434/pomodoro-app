@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Card from "@material-ui/core/Card";
 import Container from "@material-ui/core/Container";
+import firebaseApp from "./firebaseConfig";
 
 class Profile extends Component {
   constructor(props) {
@@ -8,15 +9,21 @@ class Profile extends Component {
     this.state = {};
   }
   render() {
-    return (
-      <Container>
-        {Object.keys(this.props.pomodoros).map(key => {
-          return (
-            <Card>{JSON.stringify(this.props.pomodoros[key]["text"])} </Card>
-          );
-        })}
-      </Container>
-    );
+    let pomodoros = this.props.pomodoros;
+    let currentUser = this.props.currentUser;
+
+    let onlyThisUser = pomodoros[currentUser];
+    console.log(onlyThisUser);
+    if (onlyThisUser != null) {
+      return (
+        <Container>
+          {Object.keys(onlyThisUser).map(key => {
+            return <Card>{JSON.stringify(onlyThisUser[key]["entry"])} </Card>;
+          })}
+        </Container>
+      );
+    }
+    return <div>loading...</div>;
   }
 }
 

@@ -33,7 +33,6 @@ class Time extends Component {
   }
 
   render() {
-    console.log("re-render");
     return (
       <Timer
         initialTime={this.state.timerVal} //normally 1500000

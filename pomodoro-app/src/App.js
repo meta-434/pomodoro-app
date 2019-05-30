@@ -10,7 +10,9 @@ import LocationOnIcon from "@material-ui/icons/Backup";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import { withStyles } from "@material-ui/core/styles";
+
 import Grid from "@material-ui/core/Grid";
+import firebaseApp from "./components/firebaseConfig.js";
 
 const styles = theme => ({
   button: {
@@ -25,7 +27,29 @@ class App extends Component {
       pomodoros: []
     };
   }
-  changeParent = value => {
+
+  componentDidMount() {
+    const contractRef = firebaseApp.database().ref(this.props.currentUser);
+
+    contractRef.on("value", snap => {
+      let update = snap.val() || [];
+      this.updateSnap(update);
+    });
+
+    firebaseApp.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState({
+          currentUser: user.uid
+        });
+      } else {
+        this.setState({
+          currentUser: "no_login"
+        });
+      }
+    });
+  }
+
+  updateSnap = value => {
     this.setState({
       pomodoros: value
     });
@@ -37,6 +61,7 @@ class App extends Component {
     });
     console.log(value);
   };
+
   render() {
     const { classes } = this.props;
 
@@ -62,6 +87,7 @@ class App extends Component {
               <Profile
                 {...props}
                 pomodoros={this.state.pomodoros}
+                currentUser={this.state.currentUser}
                 isAuthed={true}
               />
             )}

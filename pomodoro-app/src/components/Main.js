@@ -40,9 +40,9 @@ class Main extends React.Component {
   }
 
   handleClick = event => {
-    const textRef = firebaseConfig.database().ref("text_entries");
+    const textRef = firebaseConfig.database().ref(this.props.currentUser);
     const user = {
-      text: this.state.text
+      entry: this.state.text
     };
     textRef.push(user);
   };
@@ -50,24 +50,6 @@ class Main extends React.Component {
   handleValue = (event, value) => {
     this.setState({
       [value]: event.target.value
-    });
-  };
-
-  componentDidMount() {
-    const contractRef = firebaseConfig.database().ref("text_entries");
-
-    contractRef.on("value", snap => {
-      let update = snap.val() || [];
-      console.log(update);
-      this.updateSnap(update);
-      console.log("trying!");
-      this.props.changeParent(update);
-    });
-  }
-
-  updateSnap = value => {
-    this.setState({
-      pomodoros: value
     });
   };
 

@@ -15,23 +15,23 @@ class Login extends Component {
     };
   }
   componentDidMount() {
-    firebaseApp.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.setState(
-          {
-            currentUser: user.uid
-          },
-          () => this.props.changeParentUser(this.state.currentUser)
-        );
-      } else {
-        this.setState(
-          {
-            currentUser: "no_login"
-          },
-          () => this.props.changeParentUser(this.state.currentUser)
-        );
-      }
-    });
+    // firebaseApp.auth().onAuthStateChanged(user => {
+    //   if (user) {
+    //     this.setState(
+    //       {
+    //         currentUser: user.uid
+    //       },
+    //       () => this.props.changeParentUser(this.state.currentUser)
+    //     );
+    //   } else {
+    //     this.setState(
+    //       {
+    //         currentUser: "no_login"
+    //       },
+    //       () =>  this.props.changeParentUser(this.state.currentUser)
+    //     );
+    //   }
+    // });
   }
 
   render() {
