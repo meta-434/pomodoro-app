@@ -14,11 +14,12 @@ class Profile extends Component {
 
     let onlyThisUser = pomodoros[currentUser];
     console.log(onlyThisUser);
+
     if (onlyThisUser != null) {
       return (
         <Container>
           {Object.keys(onlyThisUser).map(key => {
-            return <Card>{JSON.stringify(onlyThisUser[key]["entry"])} </Card>;
+            return <Card>{JSON.stringify(onlyThisUser[key])} </Card>;
           })}
         </Container>
       );

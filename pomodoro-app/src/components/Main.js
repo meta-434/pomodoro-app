@@ -42,7 +42,8 @@ class Main extends React.Component {
   handleClick = event => {
     const textRef = firebaseConfig.database().ref(this.props.currentUser);
     const user = {
-      entry: this.state.text
+      entry: this.state.text,
+      timestamp: new Date().toLocaleString()
     };
     textRef.push(user);
   };
