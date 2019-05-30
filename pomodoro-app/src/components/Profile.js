@@ -1,16 +1,22 @@
-import React, {Component} from "react";
-
+import React, { Component } from "react";
+import Card from "@material-ui/core/Card";
 
 class Profile extends Component {
-    render () {
-        return(
-            <p>
-                Test
-            </p>
-
-        );
-    }
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  render() {
+    return (
+      <div>
+        {Object.keys(this.props.pomodoros).map(key => {
+          return (
+            <Card>{JSON.stringify(this.props.pomodoros[key]["text"])} </Card>
+          );
+        })}
+      </div>
+    );
+  }
 }
-
 
 export default Profile;
