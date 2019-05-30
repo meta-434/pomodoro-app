@@ -1,19 +1,40 @@
 import React, { Component } from "react";
-import Card from "@material-ui/core/Card";
-import Container from "@material-ui/core/Container";
+import withFirebaseAuth from "react-with-firebase-auth";
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import firebaseConfig from "./firebaseConfig";
+import logo from "../logo.svg";
+import "../App.css";
 
-class Profile extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+
+class Login extends Component {
   render() {
+    const { user, signOut, signInWithGoogle } = this.props;
+
     return (
-      <Container>
-        <Card>Login Page</Card>
-      </Container>
+      <div className="App">
+       
+          {user ? <p>Hello, {user.displayName}</p> : <p>Please sign in.</p>}
+
+          {user ? (
+            <button onClick={signOut}>Sign out</button>
+          ) : (
+            <button onClick={signInWithGoogle}>Sign in with Google</button>
+          )}
+        
+      </div>
     );
   }
 }
 
-export default Profile;
+const firebaseAppAuth = firebaseApp.auth();
+
+const providers = {
+  googleProvider: new firebase.auth.GoogleAuthProvider()
+};
+
+export default withFirebaseAuth({
+  providers,
+  firebaseAppAuth
+})(Login);

@@ -1,6 +1,6 @@
 import React from "react";
 //firebase
-import firebase from "./firebase.js";
+import firebaseConfig from "./firebaseConfig.js";
 //styling (material ui)
 import { Button, TextField, Grid, Typography, Card } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
@@ -40,11 +40,11 @@ class Main extends React.Component {
   }
 
   handleClick = event => {
-    const textRef = firebase.database().ref("text_entries");
-    const user = {
-      text: this.state.text
-    };
-    textRef.push(user);
+    // //const textRef = firebaseConfig.database().ref("text_entries");
+    // const user = {
+    //   text: this.state.text
+    // };
+    // textRef.push(user);
   };
 
   handleValue = (event, value) => {
@@ -54,15 +54,15 @@ class Main extends React.Component {
   };
 
   componentDidMount() {
-    const contractRef = firebase.database().ref("text_entries");
+    //const contractRef = firebaseConfig.database().ref("text_entries");
 
-    contractRef.on("value", snap => {
-      let update = snap.val() || [];
-      console.log(update);
-      this.updateSnap(update);
-      console.log("trying!");
-      this.props.changeParent(update);
-    });
+    // contractRef.on("value", snap => {
+    //   let update = snap.val() || [];
+    //   console.log(update);
+    //   this.updateSnap(update);
+    //   console.log("trying!");
+    //   this.props.changeParent(update);
+    // });
   }
 
   updateSnap = value => {
