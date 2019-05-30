@@ -23,7 +23,7 @@ class Profile extends Component {
         </Container>
       );
     }
-    return <div>loading...</div>;
+    return <div />;
   }
 }
 
