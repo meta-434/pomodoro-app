@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import withFirebaseAuth from "react-with-firebase-auth";
 import * as firebase from "firebase/app";
 import "firebase/auth";
-import firebaseConfig from "./firebaseConfig";
+import firebaseApp from "./firebaseConfig";
 import logo from "../logo.svg";
 import "../App.css";
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+// const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 class Login extends Component {
   render() {
@@ -14,15 +14,13 @@ class Login extends Component {
 
     return (
       <div className="App">
-       
-          {user ? <p>Hello, {user.displayName}</p> : <p>Please sign in.</p>}
+        {user ? <p>Hello, {user.displayName}</p> : <p>Please sign in.</p>}
 
-          {user ? (
-            <button onClick={signOut}>Sign out</button>
-          ) : (
-            <button onClick={signInWithGoogle}>Sign in with Google</button>
-          )}
-        
+        {user ? (
+          <button onClick={signOut}>Sign out</button>
+        ) : (
+          <button onClick={signInWithGoogle}>Sign in with Google</button>
+        )}
       </div>
     );
   }
