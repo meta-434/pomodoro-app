@@ -10,11 +10,7 @@ class Profile extends Component {
   render() {
     return (
       <Container>
-        {Object.keys(this.props.pomodoros).map(key => {
-          return (
-            <Card>{JSON.stringify(this.props.pomodoros[key]["text"])} </Card>
-          );
-        })}
+        <Card>Login Page</Card>
       </Container>
     );
   }

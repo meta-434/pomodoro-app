@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Main from "./components/Main.js";
 import Profile from "./components/Profile";
+import Login from "./components/Login";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import RestoreIcon from "@material-ui/icons/Assignment";
 import AccountIcon from "@material-ui/icons/AccountBox";
@@ -51,6 +52,17 @@ class App extends Component {
             path="/profile"
             render={props => (
               <Profile
+                {...props}
+                pomodoros={this.state.pomodoros}
+                isAuthed={true}
+              />
+            )}
+          />
+          <Route
+            exact={true}
+            path="/login"
+            render={props => (
+              <Login
                 {...props}
                 pomodoros={this.state.pomodoros}
                 isAuthed={true}
