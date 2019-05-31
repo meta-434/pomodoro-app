@@ -16,7 +16,6 @@ import "typeface-roboto";
 //timer
 import Time from "./Time.js";
 import Time2 from "./Time2.js";
-import axios from 'axios';
 
 const styles = theme => ({
   root: {
@@ -48,12 +47,9 @@ class Main extends React.Component {
     super(props);
     this.state = {
       pomodoros: [],
-      text: "",
-      motivation : "",
+      text: ""
     };
   }
-
-  
 
   handleClick = event => {
     const textRef = firebaseConfig.database().ref(this.props.currentUser);
@@ -70,13 +66,6 @@ class Main extends React.Component {
     });
   };
 
-  componentDidMount() {
-    axios.get('http://localhost:9000/quotes')
-      .then(res => {
-        this.setState({motivation : res.data.slip.advice}, console.log(this.state.motivation))
-      })
-  };
-      
   render() {
     const { classes } = this.props;
     return (
