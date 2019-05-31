@@ -146,7 +146,7 @@ class Main extends React.Component {
             </Button>
           </Card>
           <Card>
-            <TextField
+            {/* <TextField
               placeholder="Have a question?"
               multiline={false}
               required
@@ -164,7 +164,7 @@ class Main extends React.Component {
               Submit
             </Button>
 
-            <img src={this.state.wolfram !== null ? this.mapPods() : null} />
+            <img src={this.state.wolfram !== null ? this.mapPods() : null} /> */}
           </Card>
         </div>
       </Container>

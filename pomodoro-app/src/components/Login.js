@@ -37,7 +37,7 @@ class Login extends Component {
       <Container maxWidth="sm">
         <Typography variant="h2">Pomodoro Tracker</Typography>
         <Typography variant="h6">Login</Typography>
-        <Typography variant="subtitle2">{this.state.motivation}</Typography>
+        <Typography variant="subtitle2">"{this.state.motivation}"</Typography>
         <Paper>
           <p>{"\n"}</p>
           <Card>
