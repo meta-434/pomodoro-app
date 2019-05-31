@@ -4,21 +4,33 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import firebaseApp from "./firebaseConfig";
 import { Container, Paper, Card, Chip, Button, Typography } from "@material-ui/core";
+import axios from 'axios'
+import Card from "@material-ui/core/Card";
+import { Typography } from "@material-ui/core";
+import Container from "@material-ui/core/Container";
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: ""
+      currentUser: "",
+      motivation : ""
     };
   }
- 
+
+  componentDidMount() {
+    axios.get('http://localhost:9000/quotes')
+      .then(res => {
+        this.setState({motivation : res.data.slip.advice}, console.log(this.state.motivation))
+      })
+  }
   render() {
     const { user, signOut, signInWithGoogle } = this.props;
     return (
       <Container maxWidth="sm">
       <Typography variant="h2">Pomodoro Tracker</Typography>
         <Typography variant="h6">Login:</Typography>
+        <Typography variant="subtitle2">{this.state.motivation}</Typography>
         <Paper>
           <p>{"\n"}</p>
           <Card>
@@ -44,6 +56,7 @@ class Login extends Component {
           <p>{"\n"}</p>
         </Paper>
       </Container>
+      </div>
     );
   }
 }
