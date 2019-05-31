@@ -108,33 +108,27 @@ class App extends Component {
             variant="outlined"
             color="primary"
             className={classes.button}
-            component={Link}
-            to="/"
           >
             {" "}
-            Main
+            <Link to="/"> Main </Link>
             <RestoreIcon className={classes.rightIcon} />
           </Button>
           <Button
             variant="outlined"
             color="primary"
             className={classes.button}
-            component={Link}
-            to="/profile"
           >
             {" "}
-            Profile
+            <Link to="/profile"> Profile </Link>
             <AccountIcon className={classes.rightIcon} />
           </Button>
           <Button
             variant="outlined"
             color="primary"
             className={classes.button}
-            component={Link}
-            to="/login"
           >
             {" "}
-            Login
+            <Link to="/login"> Login </Link>
             <LocationOnIcon className={classes.rightIcon} />
           </Button>
         </Router>
