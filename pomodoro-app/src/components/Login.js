@@ -40,35 +40,32 @@ class Login extends Component {
         <Typography variant="subtitle2">"{this.state.motivation}"</Typography>
         <Paper>
           <p>{"\n"}</p>
+
+          <p>{"\n"}</p>
           <Card>
             <p>{"\n"}</p>
-            <Card>
-              <p>{"\n"}</p>
-              <Chip
-                label={
-                  user ? (
-                    <p>Hello, {user.displayName}</p>
-                  ) : (
-                    <p>Please sign in.</p>
-                  )
-                }
-              />
-              <p>{"\n"}</p>
-
-              {user ? (
-                <Button variant="outlined" onClick={signOut}>
-                  Sign out
-                </Button>
-              ) : (
-                <Button variant="outlined" onClick={signInWithGoogle}>
-                  Sign in with Google
-                </Button>
-              )}
-              <p>{"\n"}</p>
-            </Card>
+            <Chip
+              label={
+                user ? <p>Hello, {user.displayName}</p> : <p>Please sign in.</p>
+              }
+            />
             <p>{"\n"}</p>
-          </Paper>
-        </Container>
+
+            {user ? (
+              <Button variant="outlined" onClick={signOut}>
+                Sign out
+              </Button>
+            ) : (
+              <Button variant="outlined" onClick={signInWithGoogle}>
+                Sign in with Google
+              </Button>
+            )}
+            <p>{"\n"}</p>
+
+            <p>{"\n"}</p>
+          </Card>
+        </Paper>
+        <p>{"\n"}</p>
         <Paper>
           <Card>
             The Pomodoro Technique is a time management method developed by
@@ -80,7 +77,8 @@ class Login extends Component {
             student.
           </Card>
         </Paper>
-      </div>
+        <p>{"\n"}</p>
+      </Container>
     );
   }
 }
