@@ -52,9 +52,15 @@ class Main extends React.Component {
       text: "",
       wolfram: null,
       query: null,
-      sendQuery : null
+      sendQuery: null
     };
   }
+
+  mapPods = () => {
+    return(this.state.wolfram.map(sub => {
+      return console.log(sub.subpods[0].img.src);
+    }));
+  };
 
   handleClick = event => {
     const textRef = firebaseConfig.database().ref(this.props.currentUser);
@@ -66,25 +72,22 @@ class Main extends React.Component {
   };
 
   handleQueryClick = event => {
-    this.setState({sendQuery : this.state.query});
-    axios
-    .get("http://localhost:9000/main/wolfram/"+this.state.sendQuery)
-    .then(res =>
-      this.setState(
-        { wolfram: res.data},
-        console.log(res.data)
-      )
-    );
-    
-  };
-
-  handleQuery = (event, query) => {
+    console.log(this.state.query)
     this.setState(
-      {
-        query: event.target.value
-      },
-      console.log(this.state.query)
+      { sendQuery: this.state.query },
+      axios
+        .get("http://loclahost:9000/main/wolfram/" + this.state.sendQuery)
+        .then(res => {
+          console.log(res.data)
+        })
     );
+  };
+ handleQuery(e) {
+    
+    this.setState({
+      query: e.target.value
+    },
+    console.log(e.target.value));
   };
 
   handleValue = (event, value) => {
@@ -149,18 +152,19 @@ class Main extends React.Component {
               required
               variant="outlined"
               margin="normal"
-              onChange={e => this.handleQuery(e, "text")}
+              onChange={(e)=>this.handleQuery(e)}
             />
             <Button
               type="submit"
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={()=>this.handleQueryClick()}
+              onClick={() => this.handleQueryClick()}
             >
               Submit
             </Button>
-            <img src={this.state.wolfram} />
+
+            <img src={this.state.wolfram !== null ? this.mapPods() : null} />
           </Card>
         </div>
       </Container>

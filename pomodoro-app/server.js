@@ -15,10 +15,12 @@ app.get("/main/wolfram/:query", (req, res) => {
   let link =
     "http://api.wolframalpha.com/v2/query?input=" +
     req.params.query +
-    "&appid=G46Y72-L8RU6XJHYX&format=image&output=json";
+    "&appid=G46Y72-L8RU6XJHYX&format=text&output=json";
   axios.get(link).then(response => {
-    let img = response.data.queryresult.pods[1].subpods[0].img.src;
-    res.send(response.data);
+    let img = response.data.queryresult.pods;
+    res.send(img);
+    console.log(req.params.query)
+    console.log(response.data)
   });
 });
 
