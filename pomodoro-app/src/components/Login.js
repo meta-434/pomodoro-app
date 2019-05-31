@@ -23,7 +23,7 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:9000/quotes").then(res => {
+    axios.get("http://localhost:9000/login/quotes").then(res => {
       this.setState(
         { motivation: res.data.slip.advice },
         console.log(this.state.motivation)
