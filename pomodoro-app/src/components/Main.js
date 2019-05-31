@@ -85,7 +85,7 @@ class Main extends React.Component {
               </Paper>
             </Grid>
             <Grid item xs={6}>
-            <p>{"\n"}</p>
+              <p>{"\n"}</p>
               <Paper>
                 <Time2 />
               </Paper>
@@ -104,7 +104,7 @@ class Main extends React.Component {
               value={this.state.text}
               onChange={e => this.handleValue(e, "text")}
             />
-         
+
             <Button
               type="submit"
               variant="contained"
