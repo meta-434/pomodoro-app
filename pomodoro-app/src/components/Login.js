@@ -11,23 +11,36 @@ import {
   Button,
   Typography
 } from "@material-ui/core";
+import axios from "axios";
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: ""
+      currentUser: "",
+      motivation: ""
     };
+  }
+
+  componentDidMount() {
+    axios.get("http://localhost:9000/login/quotes").then(res => {
+      this.setState(
+        { motivation: res.data.slip.advice },
+        console.log(this.state.motivation)
+      );
+    });
   }
 
   render() {
     const { user, signOut, signInWithGoogle } = this.props;
     return (
-      <div>
-        <Container maxWidth="sm">
-          <Typography variant="h2">Pomodoro Tracker</Typography>
-          <Typography variant="h6">Login:</Typography>
-          <Paper>
+      <Container maxWidth="sm">
+        <Typography variant="h2">Pomodoro Tracker</Typography>
+        <Typography variant="h6">Login</Typography>
+        <Typography variant="subtitle2">"{this.state.motivation}"</Typography>
+        <Paper>
+          <p>{"\n"}</p>
+          <Card>
             <p>{"\n"}</p>
             <Card>
               <p>{"\n"}</p>

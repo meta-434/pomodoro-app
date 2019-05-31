@@ -16,6 +16,8 @@ import "typeface-roboto";
 //timer
 import Time from "./Time.js";
 import Time2 from "./Time2.js";
+//axios
+import axios from "axios";
 
 const styles = theme => ({
   root: {
@@ -48,9 +50,18 @@ class Main extends React.Component {
     super(props);
     this.state = {
       pomodoros: [],
-      text: ""
+      text: "",
+      wolfram: null,
+      query: null,
+      sendQuery: null
     };
   }
+
+  mapPods = () => {
+    return(this.state.wolfram.map(sub => {
+      return console.log(sub.subpods[0].img.src);
+    }));
+  };
 
   handleClick = event => {
     const textRef = firebaseConfig.database().ref(this.props.currentUser);
@@ -59,6 +70,25 @@ class Main extends React.Component {
       timestamp: new Date().toLocaleString()
     };
     textRef.push(user);
+  };
+
+  handleQueryClick = event => {
+    console.log(this.state.query)
+    this.setState(
+      { sendQuery: this.state.query },
+      axios
+        .get("http://loclahost:9000/main/wolfram/" + this.state.sendQuery)
+        .then(res => {
+          console.log(res.data)
+        })
+    );
+  };
+ handleQuery(e) {
+    
+    this.setState({
+      query: e.target.value
+    },
+    console.log(e.target.value));
   };
 
   handleValue = (event, value) => {
@@ -102,11 +132,11 @@ class Main extends React.Component {
             <TextField
               placeholder="Enter Text Here..."
               multiline={true}
-              fullWidth
               required
+              fullWidth
               variant="outlined"
               margin="normal"
-              rows={2}
+              rows={1}
               rowsMax={4}
               value={this.state.text}
               onChange={e => this.handleValue(e, "text")}
@@ -121,6 +151,27 @@ class Main extends React.Component {
             >
               Submit
             </Button>
+          </Card>
+          <Card>
+            {/* <TextField
+              placeholder="Have a question?"
+              multiline={false}
+              required
+              variant="outlined"
+              margin="normal"
+              onChange={(e)=>this.handleQuery(e)}
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={() => this.handleQueryClick()}
+            >
+              Submit
+            </Button>
+
+            <img src={this.state.wolfram !== null ? this.mapPods() : null} /> */}
           </Card>
         </div>
       </Container>
