@@ -23,34 +23,51 @@ class Login extends Component {
   render() {
     const { user, signOut, signInWithGoogle } = this.props;
     return (
-      <Container maxWidth="sm">
-        <Typography variant="h2">Pomodoro Tracker</Typography>
-        <Typography variant="h6">Login:</Typography>
-        <Paper>
-          <p>{"\n"}</p>
-          <Card>
+      <div>
+        <Container maxWidth="sm">
+          <Typography variant="h2">Pomodoro Tracker</Typography>
+          <Typography variant="h6">Login:</Typography>
+          <Paper>
             <p>{"\n"}</p>
-            <Chip
-              label={
-                user ? <p>Hello, {user.displayName}</p> : <p>Please sign in.</p>
-              }
-            />
-            <p>{"\n"}</p>
+            <Card>
+              <p>{"\n"}</p>
+              <Chip
+                label={
+                  user ? (
+                    <p>Hello, {user.displayName}</p>
+                  ) : (
+                    <p>Please sign in.</p>
+                  )
+                }
+              />
+              <p>{"\n"}</p>
 
-            {user ? (
-              <Button variant="outlined" onClick={signOut}>
-                Sign out
-              </Button>
-            ) : (
-              <Button variant="outlined" onClick={signInWithGoogle}>
-                Sign in with Google
-              </Button>
-            )}
+              {user ? (
+                <Button variant="outlined" onClick={signOut}>
+                  Sign out
+                </Button>
+              ) : (
+                <Button variant="outlined" onClick={signInWithGoogle}>
+                  Sign in with Google
+                </Button>
+              )}
+              <p>{"\n"}</p>
+            </Card>
             <p>{"\n"}</p>
+          </Paper>
+        </Container>
+        <Paper>
+          <Card>
+            The Pomodoro Technique is a time management method developed by
+            Francesco Cirillo in the late 1980s.[1] The technique uses a timer
+            to break down work into intervals, traditionally 25 minutes in
+            length, separated by short breaks. Each interval is known as a
+            pomodoro, from the Italian word for 'tomato', after the
+            tomato-shaped kitchen timer that Cirillo used as a university
+            student.
           </Card>
-          <p>{"\n"}</p>
         </Paper>
-      </Container>
+      </div>
     );
   }
 }
