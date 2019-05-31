@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
 const axios = require("axios");
+var cors = require("cors");
 const port = process.env.PORT || 9000;
+
+app.use(cors());
 
 const WOLFRAM_API_KEY = process.env.WOLFRAM;
 
@@ -19,8 +22,8 @@ app.get("/main/wolfram/:query", (req, res) => {
   axios.get(link).then(response => {
     let img = response.data.queryresult.pods;
     res.send(img);
-    console.log(req.params.query)
-    console.log(response.data)
+    console.log(req.params.query);
+    console.log(response.data);
   });
 });
 
