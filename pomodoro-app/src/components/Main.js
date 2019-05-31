@@ -37,6 +37,7 @@ const styles = theme => ({
   },
   paper: {
     padding: theme.spacing(2),
+    margin: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary
   }
@@ -77,18 +78,24 @@ class Main extends React.Component {
               25 on, 5 off
             </Typography>
           </Card>
-          <Grid container spacing={12}>
+          <Grid container spacing={8}>
             <Grid item xs={6}>
               <p>{"\n"}</p>
               <Paper>
+                <p>{"\n"}</p>
                 <Time />
+                <p>{"\n"}</p>
               </Paper>
+              <p>{"\n"}</p>
             </Grid>
             <Grid item xs={6}>
               <p>{"\n"}</p>
               <Paper>
+                <p>{"\n"}</p>
                 <Time2 />
+                <p>{"\n"}</p>
               </Paper>
+              <p>{"\n"}</p>
             </Grid>
           </Grid>
           <Card>
