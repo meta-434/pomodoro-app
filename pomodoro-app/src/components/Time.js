@@ -82,7 +82,7 @@ class Time extends Component {
                 Stop
               </Button>
               <Button variant="outlined" color="primary" onClick={reset}>
-                Next
+                Reset
               </Button>
             </div>
           </React.Fragment>

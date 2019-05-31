@@ -105,30 +105,36 @@ class App extends Component {
           />
           {/*add <Route path="/login" component={Login} /> once Login.js is complete and imported. */}
           <Button
-            variant="contained"
-            color="secondary"
+            variant="outlined"
+            color="primary"
             className={classes.button}
+            component={Link}
+            to="/"
           >
             {" "}
-            <Link to="/"> Main </Link>
+            Main
             <RestoreIcon className={classes.rightIcon} />
           </Button>
           <Button
-            variant="contained"
-            color="secondary"
+            variant="outlined"
+            color="primary"
             className={classes.button}
+            component={Link}
+            to="/profile"
           >
             {" "}
-            <Link to="/profile"> Profile </Link>
+            Profile
             <AccountIcon className={classes.rightIcon} />
           </Button>
           <Button
-            variant="contained"
-            color="secondary"
+            variant="outlined"
+            color="primary"
             className={classes.button}
+            component={Link}
+            to="/login"
           >
             {" "}
-            <Link to="/login"> Login </Link>
+            Login
             <LocationOnIcon className={classes.rightIcon} />
           </Button>
         </Router>
